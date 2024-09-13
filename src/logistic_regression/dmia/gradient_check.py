@@ -1,10 +1,10 @@
 from random import randrange
-from typing import Any, List
+from typing import Any
 
 import numpy as np
 
 
-def eval_numerical_gradient(f: Any, x: Any) -> List[Any]:
+def eval_numerical_gradient(f: Any, x: Any) -> np.ndarray:
     """
     a naive implementation of numerical gradient of f at x
     - f should be a function that takes a single argument
@@ -16,7 +16,7 @@ def eval_numerical_gradient(f: Any, x: Any) -> List[Any]:
     h = 0.00001
 
     # iterate over all indexes in x
-    it = np.nditer(x, flags=["multi_index"], op_flags=["readwrite"])
+    it = np.nditer(x, flags=["multi_index"], op_flags=["readwrite"])  # type: ignore
     while not it.finished:
         # evaluate function at x+h
         ix = it.multi_index
@@ -38,7 +38,7 @@ def grad_check_sparse(f: Any, x: Any, analytic_grad: Any, num_checks: Any) -> No
     """
     h = 1e-5
 
-    for i in range(num_checks):
+    for _ in range(num_checks):
         ix = tuple([randrange(m) for m in x.shape])
 
         x[ix] += h  # increment by h
