@@ -108,7 +108,8 @@ class LogisticRegression:
         ###########################################################################
         return y_proba
 
-    def sigmoid(self, z: Any) -> Any:
+    @staticmethod
+    def sigmoid(z: Any) -> Any:
         return 1.0 / (1.0 + np.exp(-z))
 
     def predict(self, X: np.ndarray) -> Any:
